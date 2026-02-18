@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Entry Ticket – Session 2 | Materials Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #1a1a2e;
+  --ink2:      #2d2d44;
+  --cream:     #f5f0e8;
+  --copper:    #b5611a;
+  --copper-lt: #e07b35;
+  --gold:      #d4a847;
+  --rule:      #c9bfaf;
+  --muted:     #6b6458;
+  --field-bg:  #fdfaf5;
+  --field-bdr: #c9bfaf;
+  --badge-a:   #1e3a8a;
+  --badge-b:   #14532d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+}
+/* TOOLBAR */
+.toolbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--ink);
+  padding: .65rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(0,0,0,.35);
+}
+.toolbar-left {
+  font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600;
+}
+.toolbar-right { display: flex; gap: .6rem; }
+.btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .75rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  border: none; border-radius: 5px; padding: .45rem 1.1rem;
+  cursor: pointer; transition: all .2s;
+}
+.btn:hover { opacity: .85; transform: translateY(-1px); }
+.btn-print { background: var(--copper); color: #fff; }
+.btn-clear { background: transparent; color: var(--rule); border: 1px solid #444; }
+.btn-clear:hover { border-color: var(--rule); color: #fff; }
+/* WRAPPER */
+.wrapper {
+  max-width: 900px; margin: 2.5rem auto;
+  padding: 0 1.5rem 4rem;
+  animation: fadeUp .6s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* MASTHEAD */
+.masthead {
+  border-top: 5px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding: 1.6rem 0 1.2rem;
+  margin-bottom: 1.8rem;
+}
+.masthead::after {
+  content: ''; display: block;
+  border-bottom: 1px solid var(--ink); margin-top: .5rem;
+}
+.course-tag {
+  font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--copper); font-weight: 600; margin-bottom: .5rem;
+}
+.masthead h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; font-weight: 700; line-height: 1.05; color: var(--ink);
+}
+.masthead h1 em { font-style: italic; color: var(--copper); }
+.masthead-sub {
+  margin-top: .6rem; font-size: .8rem;
+  color: var(--muted); font-weight: 300; letter-spacing: .02em;
+}
+/* HOW-TO */
+.howto {
+  background: var(--ink); color: var(--cream);
+  border-radius: 6px; padding: 1.2rem 1.6rem;
+  margin-bottom: 2rem; position: relative; overflow: hidden;
+}
+.howto::before {
+  content: ''; position: absolute; right: -20px; top: -20px;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: rgba(212,168,71,.12);
+}
+.howto-header {
+  font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold); font-weight: 700; margin-bottom: .75rem;
+}
+.howto ul { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+.howto li {
+  font-size: .85rem; font-weight: 300; line-height: 1.5;
+  padding-left: 1.2rem; position: relative;
+}
+.howto li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--copper-lt); font-size: .75rem;
+}
+/* INFO STRIP */
+.info-strip {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: .8rem 1.5rem; margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule);
+}
+.info-field { display: flex; flex-direction: column; gap: .3rem; }
+.info-field label {
+  font-size: .66rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--muted);
+}
+.info-field input {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; background: transparent; border: none;
+  border-bottom: 1.5px solid var(--field-bdr);
+  padding: .35rem 0; color: var(--ink); outline: none; width: 100%;
+  transition: border-color .2s;
+}
+.info-field input:focus { border-bottom-color: var(--copper); }
+.info-field input::placeholder { color: #bfb8ad; font-size: .82rem; }
+/* SECTION HEADER */
+.section-header {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.4rem; margin-top: .5rem;
+}
+.section-badge {
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: .3rem .9rem;
+  border-radius: 3px; white-space: nowrap;
+}
+.badge-a { background: var(--badge-a); color: #fff; }
+.badge-b { background: var(--badge-b); color: #fff; }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 600; color: var(--ink);
+}
+.section-rule { flex: 1; height: 1px; background: var(--rule); }
+.section-desc {
+  font-size: .8rem; color: var(--muted); font-style: italic;
+  margin-bottom: 1.6rem; line-height: 1.5;
+}
+/* PRIORITY CARD */
+.priority-card {
+  background: white; border: 1px solid var(--rule);
+  border-radius: 8px; padding: 1.5rem 1.6rem;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 2px 8px rgba(26,26,46,.05);
+  transition: box-shadow .2s;
+}
+.priority-card:hover { box-shadow: 0 4px 16px rgba(26,26,46,.1); }
+.priority-card.optional { border-style: dashed; background: #fdfcfa; }
+.priority-label {
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: 1.2rem; padding-bottom: .9rem;
+  border-bottom: 1px solid var(--rule);
+}
+.priority-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--copper); color: white;
+  font-size: .8rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.priority-num.opt { background: var(--muted); }
+.priority-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-weight: 600; color: var(--ink);
+}
+.optional-tag {
+  font-size: .65rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted);
+  background: #f0ede8; padding: .2rem .6rem; border-radius: 3px;
+}
+/* CHECKBOX ROW */
+.checkbox-row {
+  display: flex; flex-wrap: wrap; gap: .5rem 1rem;
+  margin-bottom: 1.3rem; align-items: center;
+}
+.checkbox-row-label {
+  font-size: .7rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--muted); width: 100%; margin-bottom: .2rem;
+}
+.checkbox-option {
+  display: flex; align-items: center; gap: .4rem;
+  cursor: pointer; font-size: .82rem; color: var(--ink2); user-select: none;
+}
+.checkbox-option input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none;
+  width: 16px; height: 16px; border: 1.5px solid var(--field-bdr);
+  border-radius: 3px; flex-shrink: 0; cursor: pointer;
+  transition: all .15s; position: relative;
+}
+.checkbox-option input[type="checkbox"]:checked {
+  background: var(--copper); border-color: var(--copper);
+}
+.checkbox-option input[type="checkbox"]:checked::after {
+  content: '✓'; position: absolute; top: -2px; left: 2px;
+  font-size: .7rem; color: white; font-weight: 700;
+}
+.other-input {
+  font-family: 'DM Sans', sans-serif; font-size: .82rem;
+  border: none; border-bottom: 1.5px solid var(--field-bdr);
+  background: transparent; padding: .2rem .3rem;
+  width: 120px; color: var(--ink); outline: none; transition: border-color .2s;
+}
+.other-input:focus { border-bottom-color: var(--copper); }
+/* SUBFIELD */
+.subfield { margin-bottom: 1.1rem; }
+.subfield-label {
+  font-size: .72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--copper);
+  margin-bottom: .5rem; display: flex; align-items: center; gap: .4rem;
+}
+.subfield-label::after {
+  content: ''; flex: 1; height: 1px; background: #f0ece6;
+}
+.bullet-inputs { display: flex; flex-direction: column; gap: .5rem; }
+.bullet-row { display: flex; align-items: flex-start; gap: .6rem; }
+.bullet-dot { font-size: .9rem; color: var(--copper); flex-shrink: 0; padding-top: .25rem; }
+.bullet-row textarea {
+  font-family: 'DM Sans', sans-serif; font-size: .85rem; flex: 1;
+  border: none; border-bottom: 1px solid var(--field-bdr);
+  background: transparent; padding: .3rem 0; color: var(--ink);
+  outline: none; resize: none; overflow: hidden;
+  line-height: 1.5; min-height: 28px; transition: border-color .2s;
+}
+.bullet-row textarea:focus { border-bottom-color: var(--copper); }
+.bullet-row textarea::placeholder { color: #c5beb5; font-size: .8rem; }
+/* PART B CARD */
+.part-b-card {
+  background: white; border: 1px solid var(--rule);
+  border-radius: 8px; padding: 1.6rem 1.8rem;
+  box-shadow: 0 2px 8px rgba(26,46,26,.05);
+}
+.pb-item {
+  margin-bottom: 1.4rem; padding-bottom: 1.4rem;
+  border-bottom: 1px solid #f0ece6;
+}
+.pb-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.pb-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--badge-b); color: white;
+  font-size: .68rem; font-weight: 700;
+  margin-right: .5rem; flex-shrink: 0; vertical-align: middle;
+}
+.pb-label {
+  font-size: .78rem; font-weight: 600; color: var(--ink2);
+  margin-bottom: .55rem; line-height: 1.4;
+}
+.pb-textarea {
+  font-family: 'DM Sans', sans-serif; font-size: .85rem; width: 100%;
+  border: 1px solid var(--field-bdr); border-radius: 5px;
+  background: var(--field-bg); padding: .6rem .8rem; color: var(--ink);
+  outline: none; resize: vertical; min-height: 52px;
+  line-height: 1.5; transition: border-color .2s, box-shadow .2s;
+}
+.pb-textarea:focus {
+  border-color: var(--copper);
+  box-shadow: 0 0 0 3px rgba(181,97,26,.1);
+}
+.pb-textarea::placeholder { color: #c5beb5; font-size: .8rem; }
+.format-label {
+  font-size: .68rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--muted); width: 100%; margin-bottom: .3rem;
+}
+.format-row { display: flex; flex-wrap: wrap; gap: .4rem .9rem; margin-bottom: .75rem; }
+.inline-label {
+  font-size: .8rem; color: var(--ink2); margin-top: .55rem; line-height: 1.6;
+}
+.inline-input {
+  font-family: 'DM Sans', sans-serif; font-size: .82rem;
+  border: none; border-bottom: 1.5px solid var(--field-bdr);
+  background: transparent; padding: .15rem .3rem; color: var(--ink);
+  outline: none; transition: border-color .2s;
+}
+.inline-input:focus { border-bottom-color: var(--copper); }
+.inline-input.wide { width: 240px; }
+.inline-input.small { width: 50px; }
+/* SUBMISSION NOTE */
+.submission-note {
+  margin-top: 2.2rem; padding: 1rem 1.4rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(212,168,71,.07);
+  border-radius: 0 6px 6px 0;
+  font-size: .8rem; color: var(--muted); line-height: 1.6;
+}
+.submission-note strong { color: var(--ink); font-weight: 600; }
+/* PRINT */
+@media print {
+  .toolbar { display: none; }
+  body { background: white; }
+  .wrapper { margin: 0; padding: 1.5rem; max-width: none; animation: none; }
+  .priority-card, .part-b-card { box-shadow: none; break-inside: avoid; }
+  .howto { background: #222 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .masthead h1 { font-size: 2.2rem; }
+  .section-badge, .priority-num, .pb-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-left">Materials Design · M.A. in ELT</div>
+  <div class="toolbar-right">
+    <button class="btn btn-clear" onclick="clearForm()">Clear All</button>
+    <button class="btn btn-print" onclick="window.print()">⎙ Print / Save as PDF</button>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="course-tag">Materials Design · M.A. in ELT</div>
+    <h1>Studio Entry Ticket<br><em>Session 2</em></h1>
+    <div class="masthead-sub">Loop-Input Worksheet &nbsp;·&nbsp; Design Plan + Prototype Brief</div>
+  </div>
+
+  <!-- HOW TO USE -->
+  <div class="howto">
+    <div class="howto-header">How to use this worksheet (Loop input)</div>
+    <ul>
+      <li>Complete <strong>Part A</strong> first. Model your Design Plan on the example in the "Sample" sheet of the MAM file.</li>
+      <li>Then complete <strong>Part B</strong> (your one-page pitch). Bring this worksheet to the face-to-face studio session.</li>
+      <li>Use bullet points. Keep it concise and specific.</li>
+    </ul>
+  </div>
+
+  <!-- STUDENT INFO -->
+  <div class="info-strip">
+    <div class="info-field">
+      <label>Name</label>
+      <input type="text" placeholder="Full name…" />
+    </div>
+    <div class="info-field">
+      <label>Date</label>
+      <input type="text" id="f-date" placeholder="DD / MM / YYYY" />
+    </div>
+    <div class="info-field">
+      <label>Material analysed (type)</label>
+      <input type="text" placeholder="e.g. Coursebook unit, online task…" />
+    </div>
+    <div class="info-field">
+      <label>Class / Setting</label>
+      <input type="text" placeholder="e.g. B2 Adult General English…" />
+    </div>
+  </div>
+
+  <!-- ══════════ PART A ══════════ -->
+  <div class="section-header">
+    <span class="section-badge badge-a">Part A</span>
+    <span class="section-title">Design Plan</span>
+    <span class="section-rule"></span>
+  </div>
+  <p class="section-desc">
+    Model your structure on the "Sample" sheet in the MAM file. Use 2–3 priorities derived from your MAM (especially gaps / NOs).
+  </p>
+
+  <!-- PRIORITY 1 -->
+  <div class="priority-card">
+    <div class="priority-label">
+      <div class="priority-num">1</div>
+      <div class="priority-title">Redesign Priority 1</div>
+    </div>
+    <div class="checkbox-row">
+      <div class="checkbox-row-label">Choose one:</div>
+      <label class="checkbox-option"><input type="checkbox" name="p1" /> Contextualisation</label>
+      <label class="checkbox-option"><input type="checkbox" name="p1" /> Interaction</label>
+      <label class="checkbox-option"><input type="checkbox" name="p1" /> Feedback</label>
+      <label class="checkbox-option"><input type="checkbox" name="p1" /> Engagement</label>
+      <label class="checkbox-option"><input type="checkbox" name="p1" /> Multimodality</label>
+      <label class="checkbox-option"><input type="checkbox" name="p1" /> Other: <input class="other-input" type="text" placeholder="specify…" onclick="event.stopPropagation()" /></label>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">Gap identified in MAM (evidence)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Describe evidence from your MAM analysis…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">What I will change (design target)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Specific design target…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">How I will change it (specific design action)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Concrete design action…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield" style="margin-bottom:0">
+      <div class="subfield-label">Why it matters (learners / context)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Rationale connected to your learners / context…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIORITY 2 -->
+  <div class="priority-card">
+    <div class="priority-label">
+      <div class="priority-num">2</div>
+      <div class="priority-title">Redesign Priority 2</div>
+    </div>
+    <div class="checkbox-row">
+      <div class="checkbox-row-label">Choose one:</div>
+      <label class="checkbox-option"><input type="checkbox" name="p2" /> Contextualisation</label>
+      <label class="checkbox-option"><input type="checkbox" name="p2" /> Interaction</label>
+      <label class="checkbox-option"><input type="checkbox" name="p2" /> Feedback</label>
+      <label class="checkbox-option"><input type="checkbox" name="p2" /> Engagement</label>
+      <label class="checkbox-option"><input type="checkbox" name="p2" /> Multimodality</label>
+      <label class="checkbox-option"><input type="checkbox" name="p2" /> Other: <input class="other-input" type="text" placeholder="specify…" onclick="event.stopPropagation()" /></label>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">Gap identified in MAM (evidence)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Describe evidence from your MAM analysis…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">What I will change (design target)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Specific design target…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">How I will change it (specific design action)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Concrete design action…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield" style="margin-bottom:0">
+      <div class="subfield-label">Why it matters (learners / context)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Rationale connected to your learners / context…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIORITY 3 (OPTIONAL) -->
+  <div class="priority-card optional">
+    <div class="priority-label">
+      <div class="priority-num opt">3</div>
+      <div class="priority-title">Redesign Priority 3</div>
+      <span class="optional-tag">Optional</span>
+    </div>
+    <div class="checkbox-row">
+      <div class="checkbox-row-label">Choose one:</div>
+      <label class="checkbox-option"><input type="checkbox" name="p3" /> Contextualisation</label>
+      <label class="checkbox-option"><input type="checkbox" name="p3" /> Interaction</label>
+      <label class="checkbox-option"><input type="checkbox" name="p3" /> Feedback</label>
+      <label class="checkbox-option"><input type="checkbox" name="p3" /> Engagement</label>
+      <label class="checkbox-option"><input type="checkbox" name="p3" /> Multimodality</label>
+      <label class="checkbox-option"><input type="checkbox" name="p3" /> Other: <input class="other-input" type="text" placeholder="specify…" onclick="event.stopPropagation()" /></label>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">Gap identified in MAM (evidence)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Describe evidence from your MAM analysis…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">What I will change (design target)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Specific design target…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield">
+      <div class="subfield-label">How I will change it (specific design action)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Concrete design action…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+    <div class="subfield" style="margin-bottom:0">
+      <div class="subfield-label">Why it matters (learners / context)</div>
+      <div class="bullet-inputs">
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" placeholder="Rationale connected to your learners / context…" oninput="autoResize(this)"></textarea></div>
+        <div class="bullet-row"><span class="bullet-dot">•</span><textarea rows="1" oninput="autoResize(this)"></textarea></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ PART B ══════════ -->
+  <div class="section-header" style="margin-top:2.5rem">
+    <span class="section-badge badge-b">Part B</span>
+    <span class="section-title">Prototype Brief</span>
+    <span class="section-rule"></span>
+  </div>
+  <p class="section-desc">
+    Use this page as your 2-minute studio pitch. Keep it scannable and specific.
+  </p>
+
+  <div class="part-b-card">
+
+    <div class="pb-item">
+      <div class="pb-label"><span class="pb-num">1</span> Learners &amp; context <em style="font-weight:300;color:var(--muted)">(1–2 lines)</em></div>
+      <textarea class="pb-textarea" rows="2" placeholder="Describe your target learners, setting, and context…" oninput="autoResize(this)"></textarea>
+    </div>
+
+    <div class="pb-item">
+      <div class="pb-label"><span class="pb-num">2</span> Skill / learning outcome <em style="font-weight:300;color:var(--muted)">(CEFR + syllabus)</em></div>
+      <textarea class="pb-textarea" rows="2" placeholder="e.g. B2 Speaking – sustained monologue; linked to syllabus unit 4…" oninput="autoResize(this)"></textarea>
+    </div>
+
+    <div class="pb-item">
+      <div class="pb-label"><span class="pb-num">3</span> MAM highlights <em style="font-weight:300;color:var(--muted)">(2 strengths + 2 gaps)</em></div>
+      <textarea class="pb-textarea" rows="4" placeholder="Strength 1: …&#10;Strength 2: …&#10;Gap 1: …&#10;Gap 2: …" oninput="autoResize(this)"></textarea>
+    </div>
+
+    <div class="pb-item">
+      <div class="pb-label"><span class="pb-num">4</span> Redesign priorities <em style="font-weight:300;color:var(--muted)">(top 1–2) and why</em></div>
+      <textarea class="pb-textarea" rows="2" placeholder="State your top 1–2 redesign priorities and your rationale…" oninput="autoResize(this)"></textarea>
+    </div>
+
+    <div class="pb-item">
+      <div class="pb-label"><span class="pb-num">5</span> Prototype concept</div>
+      <div class="format-row">
+        <div class="format-label">Format:</div>
+        <label class="checkbox-option"><input type="checkbox" name="fmt" /> Worksheet</label>
+        <label class="checkbox-option"><input type="checkbox" name="fmt" /> Short sequence</label>
+        <label class="checkbox-option"><input type="checkbox" name="fmt" /> Slide-based task</label>
+        <label class="checkbox-option"><input type="checkbox" name="fmt" /> Print–digital hybrid</label>
+        <label class="checkbox-option"><input type="checkbox" name="fmt" /> Other: <input class="other-input" type="text" placeholder="specify…" onclick="event.stopPropagation()" /></label>
+      </div>
+      <textarea class="pb-textarea" rows="2" placeholder="Brief description of your prototype concept…" oninput="autoResize(this)" style="margin-bottom:.75rem;"></textarea>
+      <div class="inline-label">
+        Task sequence (Pre / During / Post &nbsp;or&nbsp; Input / Task / Output):&nbsp;
+        <input class="inline-input wide" type="text" placeholder="describe sequence…" />
+      </div>
+      <div class="inline-label">
+        Estimated time:&nbsp;<input class="inline-input small" type="text" placeholder="00" />&nbsp;minutes
+      </div>
+    </div>
+
+    <div class="pb-item">
+      <div class="pb-label"><span class="pb-num">6</span> Multimodal elements + AI role <em style="font-weight:300;color:var(--muted)">(or non-use)</em></div>
+      <textarea class="pb-textarea" rows="2" placeholder="Describe the multimodal elements and how / whether AI will be used…" oninput="autoResize(this)"></textarea>
+    </div>
+
+    <div class="pb-item">
+      <div class="pb-label"><span class="pb-num">7</span> One question for peer feedback</div>
+      <textarea class="pb-textarea" rows="2" placeholder="Write a focused question you want feedback on from your peers…" oninput="autoResize(this)"></textarea>
+    </div>
+
+  </div><!-- /part-b-card -->
+
+  <div class="submission-note">
+    <strong>Submission note (Brightspace):</strong> Export or print this worksheet and bring it to Session 2. Upload as <strong>ONE PDF</strong>.
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+// Single-select per checkbox group
+document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', function () {
+    const name = this.name;
+    if (!name || !this.checked) return;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(other => {
+      if (other !== this) other.checked = false;
+    });
+  });
+});
+
+// Clear form
+function clearForm() {
+  if (!confirm('Clear all fields? This cannot be undone.')) return;
+  document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('textarea').forEach(el => { el.style.height = 'auto'; });
+}
+
+// Suggest today's date
+const df = document.getElementById('f-date');
+if (df) {
+  const t = new Date();
+  df.placeholder = `${String(t.getDate()).padStart(2,'0')} / ${String(t.getMonth()+1).padStart(2,'0')} / ${t.getFullYear()}`;
+}
+</script>
+</body>
+</html>
